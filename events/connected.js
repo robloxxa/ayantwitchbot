@@ -1,0 +1,1 @@
+module.exports = (client) => client.logger.ready('Connected to twitch')

@@ -1,0 +1,10 @@
+{
+  "osuUsername": null ,
+  "osuApiKey": null,
+  "osuIRCPassword": null,
+  "twitchBotToken": null,
+  "twitchChannelName": null,
+  "prefix": "!",
+  "language": "en_US",
+  "debug": false
+}

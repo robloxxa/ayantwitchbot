@@ -1,0 +1,18 @@
+{
+  "language": "Russian",
+  "incorrectString": "Неверное значение, попробуйте ещё раз",
+  "setup_information": "Пожалуйста имейте ввиду что все данные хранятся локально в {0} и нужны для работы бота (Больше информации здесь **ссылка**)",
+  "setup_osuUsername": "Укажите свой никнейм в osu!",
+  "setup_osuApiKey": "Укажите osu!api ключ (https://old.ppy.sh/p/api/)",
+  "setup_osuIRCPassword": "Укажите osu!irc пароль (https://old.ppy.sh/p/irc/)",
+  "setup_twitchBotToken": "Укажите twitch api ключ бота или ваш собственный (https://twitchapps.com/tmi/)",
+  "setup_twitchChannelName": "Укажите название вашего канала Twitch",
+  "setup_prefix": "Укажите префикс для бота (Нажмите Enter чтобы оставить '!')",
+  "setup_ended": "Начальная конфигурация окончена, запускаем бота",
+  "ready_bancho": "Bancho подключено",
+  "ready_twitch": "Twitch подключен",
+  "ready_bot": "Бот работает!",
+  "error_bancho": "Невозможно подключиться к Bancho, возможно вы ввели неверные данные в config.json",
+  "error_twitch": "Невозможно подключиться к Twitch, возможно вы ввели неверные данные в config.json",
+  "error_bot": "Произошла ошибка"
+}
