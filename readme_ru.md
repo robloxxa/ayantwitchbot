@@ -3,7 +3,7 @@ WIP
 # Создание собственных комманд
 Вы можете создавать собственные команды с помощью javascript и использовать их в боте\
 **Пример:**
-```
+```javascript
 exports.conf = { // Configuration settings for command
       name: 'currentskin',
       aliases: ['cs', 'skincurrent'],
