@@ -17,5 +17,6 @@ module.exports = async client => {
             }
         }
     }
+    await self.data()
     return self
 }
