@@ -10,8 +10,8 @@ jobs:
             artifact: ayanbot.exe
           - os: ubuntu
              build: |
-              npx caxa --input . --output "ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-              tar -czf "ayanbot-linux.tgz" "ayanbot"
+                npx caxa --input . --output "ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+                tar -czf "ayanbot-linux.tgz" "ayanbot"
              artifact: ayanbot-linux.tgz
     runs-on: ${{ matrix.os }}-latest
     steps:
