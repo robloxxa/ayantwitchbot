@@ -1,8 +1,6 @@
 
 on: push
 jobs:
-- name: Get current package version
-  uses: martinbeentjes/npm-get-version-action@v1.1.0
   insiders-build:
     strategy:
       matrix:
@@ -25,6 +23,8 @@ jobs:
 #             artifact: courselore--linux--${{ github.sha }}.tgz
     runs-on: ${{ matrix.os }}-latest
     steps:
+      - name: Get current package version
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
