@@ -9,13 +9,12 @@ jobs:
           - os: windows
             build: |
               npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-              powershell Compress-Archive "ayanbot.exe" "ayanbot-windows.zip"
-            artifact: ayanbot-windows.zip
+            artifact: ayanbot.exe
            - os: ubuntu
              build: |
                npx caxa --input . --output "ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-               tar -czf "ayanbot-linux.tgz" "courselore"
-             artifact: courselore--linux--${{ github.sha }}.tgz
+               tar -czf "ayanbot-linux.tgz" "ayanbot"
+             artifact: ayanbot-linux.tgz
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
@@ -34,6 +33,7 @@ jobs:
     needs: [ insiders-build ]
     runs-on: ubuntu-latest
     steps:
+      - run: zip -czf "ayanbot-windows.zip" "ayanbot.exe"
       - uses: actions/download-artifact@v2
         with:
           name: ayanbot-windows.zip
