@@ -7,10 +7,9 @@ jobs:
         os: [windows, ubuntu]
         include:
           - os: windows
-            build: |
-              npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+            build: npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
             artifact: ayanbot.exe
-           - os: ubuntu
+          - os: ubuntu
              build: |
                npx caxa --input . --output "ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
                tar -czf "ayanbot-linux.tgz" "ayanbot"
