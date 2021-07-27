@@ -1,13 +1,18 @@
+
 on: push
 jobs:
+- name: Get current package version
+  uses: martinbeentjes/npm-get-version-action@v1.1.0
   insiders-build:
     strategy:
       matrix:
         os: [windows]
         include:
           - os: windows
-            build: npx caxa --input . --output "ayanbot-windows-${{ github.sha }}.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-            artifact: ayanbot-windows-${{ github.sha }}.exe
+            build: |
+              npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+              powershell Compress-Archive ayanbot.exe ayanbot-windows.zip
+            artifact: ayanbot-windows.zip
 #           - os: macos
 #             build: |
 #               npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}/lib/index.js" --output "CourseLore.app"
