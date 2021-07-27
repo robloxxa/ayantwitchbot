@@ -6,8 +6,8 @@ jobs:
         os: [windows]
         include:
           - os: windows
-            build: npm run build
-            artifact: ayanbot.exe
+            build: npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}index.js" --output "ayanbot-win-${{ github.sha }}.exe"
+            artifact: ayanbot-win-${{ github.sha }}.exe
 #           - os: macos
 #             build: |
 #               npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}/lib/index.js" --output "CourseLore.app"
