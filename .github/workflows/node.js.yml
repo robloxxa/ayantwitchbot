@@ -9,7 +9,7 @@ jobs:
           - os: windows
             build: |
               npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-              powershell Compress-Archive ayanbot.exe ayanbot-windows.zip
+              powershell Compress-Archive "ayanbot.exe" "ayanbot-windows.zip"
             artifact: ayanbot-windows.zip
            - os: ubuntu
              build: |
