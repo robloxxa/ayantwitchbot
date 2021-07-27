@@ -1,0 +1,33 @@
+on: push
+jobs:
+  insiders-build:
+    strategy:
+      matrix:
+        os: [windows]
+        include:
+          - os: windows
+            build: npx caxa --input . --output "ayanbot-windows-${{ github.sha }}.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+            artifact: ayanbot-windows-${{ github.sha }}.exe
+#           - os: macos
+#             build: |
+#               npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}/lib/index.js" --output "CourseLore.app"
+#               tar -czf "CourseLore--macos--${{ github.sha }}.app.tgz" "CourseLore.app"
+#             artifact: CourseLore--macos--${{ github.sha }}.app.tgz
+#           - os: ubuntu
+#             build: |
+#               npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}/lib/index.js" --output "courselore"
+#               tar -czf "courselore--linux--${{ github.sha }}.tgz" "courselore"
+#             artifact: courselore--linux--${{ github.sha }}.tgz
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15
+      - run: |
+          npm ci
+          ${{ matrix.build }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}

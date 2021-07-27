@@ -1,10 +1,11 @@
 {
-  "name": "otbosunew",
+  "name": "osutwitchbot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "robloxxa",
@@ -13,7 +14,11 @@
     "bancho.js": "^0.9.7",
     "chalk": "^4.1.1",
     "node-fetch": "^2.6.1",
+    "ojsama": "^2.2.0",
     "prompts": "^2.4.1",
     "tmi.js": "^1.8.3"
+  },
+  "devDependencies": {
+    "caxa": "^2.1.0"
   }
 }

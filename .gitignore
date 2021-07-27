@@ -11,3 +11,4 @@ gen
 /config.json
 /language.json
 /node_modules/
+/executable/

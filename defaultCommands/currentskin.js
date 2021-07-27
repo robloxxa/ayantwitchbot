@@ -4,12 +4,12 @@ exports.conf = {
     modOnly: false,
     regexp: {
         only: false, // Set this to true if you don't wanna user call command within its name
-        value: '/skin?/g'
+        value: /skin\?/gi
     }
 }
 
 exports.run = async (client, channel, author, value) => {
-    const data = await client.gosu.data() //fetching data from gosumemory (./api/gosu.js)
-    if (!data) return client.twitch.say(channel, `Can't fetch data from streamer game`) // If no data recieved we return an error message
+    const data = await client.gosu.data() // fetching data from gosumemory (./api/gosu.js)
+    if (!data) return // If no data received we just exit
     client.twitch.say(channel, `Current skin: ${data.settings.folders.skin}`)
 }

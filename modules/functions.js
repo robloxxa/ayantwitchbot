@@ -1,7 +1,11 @@
+const modsReference = ['SO', 'EZ', 'NF', 'HD', 'HT', 'DT', 'HR', 'FL', 'PF', 'SD', 'RX', 'AP', 'AT', 'SV2', 'ScoreV2']
 module.exports = async (client) => {
     client.getByRegexp = (value) => {
         for (let [name, regex] of client.regexp) {
-            if (value.match(new RegExp(regex))) return name
+            if (value.match(new RegExp(regex))) {
+                client.logger.debug('Regexp matched '+regex.toString())
+                return name
+            }
         }
         return false
     }
@@ -22,7 +26,25 @@ module.exports = async (client) => {
             return false;
         }
     }
-    client.getRankedStatus = (rankedStatus) => {
+
+    client.parseMods = (mods = "") => {
+        const modsArr = mods.toUpperCase().split(/(?:[^a-zA-Z_]*)?(..)/g)
+        return modsReference.filter(e => modsArr.includes(e)).join("")
+    }
+
+    client.getApiRankedStatus = (rankedStatus) => {
+        switch (rankedStatus) {
+            case -2: return 'Unranked'
+            case -1: return 'WIP'
+            case 0: return 'Pending'
+            case 1: return 'Ranked'
+            case 2: return 'Approved'
+            case 3: return 'Qualified'
+            case 4: return 'Loved'
+            default: return 'Unranked'
+        }
+    }
+    client.getGosuRankedStatus = (rankedStatus) => {
         switch (rankedStatus) {
             case 0: return 'WIP'
             case 1: return 'Not Submitted'
@@ -34,5 +56,18 @@ module.exports = async (client) => {
             default: return 'Unranked'
         }
     }
+    Number.prototype.toTime = function(isSec) {
+        const ms = isSec ? this * 1e3 : this,
+            lm = ~(4 * !!isSec),  /* limit fraction */
+            fmt = new Date(ms).toISOString().slice(11, lm);
+        // if (ms >= 8.64e7) {  /* >= 24 hours */
+        //     const parts = fmt.split(/:(?=\d{2}:)/);
+        //     parts[0] -= -24 * (ms / 8.64e7 | 0);
+        //     return parts.join(':');
+        // }
+
+        return fmt.startsWith('00') ? fmt.slice(3) : fmt
+    }
+
 }
 

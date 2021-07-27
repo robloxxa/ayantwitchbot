@@ -8,8 +8,7 @@ module.exports = async client => {
             try {
                 const data = await fetch('http://localhost:24050/json')
                     .then(res => res.json()).catch(e => {})
-                if (!data) throw 'gosumemory was closed or you havent yet start osu'
-                if (data.error) throw data.error
+                if (!data || data.error) throw client.interface.gosu.error
                 return data
             } catch (e) {
                 client.logger.warn(e)
@@ -17,6 +16,6 @@ module.exports = async client => {
             }
         }
     }
-    await self.data()
+    if (await self.data()) client.logger.ready(client.interface.gosu.ready)
     return self
 }
