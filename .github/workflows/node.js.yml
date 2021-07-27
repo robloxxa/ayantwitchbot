@@ -4,27 +4,20 @@ jobs:
   insiders-build:
     strategy:
       matrix:
-        os: [windows]
+        os: [windows, ubuntu]
         include:
           - os: windows
             build: |
               npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
               powershell Compress-Archive ayanbot.exe ayanbot-windows.zip
             artifact: ayanbot-windows.zip
-#           - os: macos
-#             build: |
-#               npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}/lib/index.js" --output "CourseLore.app"
-#               tar -czf "CourseLore--macos--${{ github.sha }}.app.tgz" "CourseLore.app"
-#             artifact: CourseLore--macos--${{ github.sha }}.app.tgz
-#           - os: ubuntu
-#             build: |
-#               npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}/lib/index.js" --output "courselore"
-#               tar -czf "courselore--linux--${{ github.sha }}.tgz" "courselore"
-#             artifact: courselore--linux--${{ github.sha }}.tgz
+           - os: ubuntu
+             build: |
+               npx caxa --input . --output "ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+               tar -czf "ayanbot-linux.tgz" "courselore"
+             artifact: courselore--linux--${{ github.sha }}.tgz
     runs-on: ${{ matrix.os }}-latest
     steps:
-      - name: Get current package version
-        uses: martinbeentjes/npm-get-version-action@v1.1.0
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -36,3 +29,42 @@ jobs:
         with:
           name: ${{ matrix.artifact }}
           path: ${{ matrix.artifact }}
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [ insiders-build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: ayanbot-windows.zip
+      - uses: actions/download-artifact@v2
+        with:
+          name: ayanbot-macos.tgz
+      - uses: actions/download-artifact@v2
+        with:
+          name: ayanbot-linux.tgz
+      - run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+        id: tag
+      - uses: actions/create-release@v1
+        id: create-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          release_name: Release ${{ steps.tag.outputs.tag }}
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ayanbot-windows.zip
+          asset_name: ayanbot-windows-${{ steps.tag.outputs.tag }}.zip
+          asset_content_type: application/vnd.microsoft.portable-executable
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ayanbot-linux.tgz
+          asset_name: ayanbot-linux-${{ steps.tag.outputs.tag }}.tgz
+          asset_content_type: application/gzip
