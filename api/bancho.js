@@ -8,14 +8,15 @@ module.exports = async (client) => {
             apiKey: client.config.osuApiKey
         })
         await bancho.connect()
-        client.logger.ready(`Connected to bancho`)
+        client.logger.ready(client.interface.bancho.ready)
         if (client.config.debug) bancho.on('PM', message => client.logger.debug(message.message))
+        bancho.on('disconnected', (error) => client.logger.warn(client.interface.bancho.disconnected))
         bancho.say = (message) => bancho.getSelf().sendMessage(message)
         return bancho
     } catch (e) {
-        client.logger.error(`Can't connect to bancho`)
+        client.logger.error(client.interface.bancho.error)
         client.logger.error(e)
-        client.logger.error('Bot will not send any messages in your osu! dm. Please check your auth data in config.default.json and restart the bot')
+        client.logger.warn('Bot will not send any messages in your osu! dm. Please check your auth data in config.default.json and restart the bot')
         return {
             say: () => false
         }
