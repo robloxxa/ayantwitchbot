@@ -3,6 +3,10 @@ const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 
 module.exports = async client => {
+    client.commands = new Map()
+    client.aliases = new Map()
+    client.regexp = new Map()
+
     try {
         const twitch = new tmi.Client({
             options: { debug: false },
@@ -31,10 +35,10 @@ module.exports = async client => {
             if (client.loadCommand(`../defaultCommands/${f}`)) client.logger.debug(`default command ${f} loaded`)
         })
 
-        const events = await readdir('./events/')
+        const events = await readdir('./eventsTwitch/')
         events.forEach(f => {
             if (!f.endsWith(".js")) return
-            const event = require(`../events/${f}`)
+            const event = require(`../eventsTwitch/${f}`)
             let eventName = f.split(".")[0]
             twitch.on(eventName, event.bind(null, client))
         })
@@ -43,7 +47,7 @@ module.exports = async client => {
 
         return twitch
     } catch (e) {
-        client.logger.error(`Can't connect to twitch, maybe something is wrong with your auth data in config.json`)
+        client.logger.error(client.langauge.twitch.error)
         client.logger.error(e)
         return false
     }
