@@ -6,7 +6,7 @@ jobs:
         os: [windows]
         include:
           - os: windows
-            build: npx caxa --directory . --command "{{caxa}}/node_modules/.bin/node" "{{caxa}}index.js" --output "ayanbot-win-${{ github.sha }}.exe"
+            build: npx caxa --input . --output "ayanbot-win.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
             artifact: ayanbot-win-${{ github.sha }}.exe
 #           - os: macos
 #             build: |
