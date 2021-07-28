@@ -45,7 +45,7 @@ jobs:
           name: ayanbot-linux
       - name: "Pack files"
         run: |
-          zip -czf "ayanbot-windows.zip" "ayanbot.exe"
+          zip ayanbot-windows.zip ayanbot.exe
           tar -czf "ayanbot-linux.tgz" "ayanbot"
       - uses: actions/create-release@v1
         id: create-release
