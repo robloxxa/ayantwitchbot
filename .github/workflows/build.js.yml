@@ -3,13 +3,13 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows, ubuntu]
+        os: [ubuntu]
         include:
-          - os: windows
-            name: windows
-            build: |
-              npx caxa --input . --output "windows/ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-            artifact: ayanbot.exe
+#          - os: windows
+#            name: windows
+#            build: |
+#              npx caxa --input . --output "windows/ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+#            artifact: ayanbot.exe
           - os: ubuntu
             name: linux
             build: |
@@ -37,12 +37,16 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
+#      - uses: actions/download-artifact@v2
+#        with:
+#          name: ayanbot-windows
       - uses: actions/download-artifact@v2
-        with:
-          name: ayanbot-windows
-      - uses: actions/download-artifact@v2
+        id: download
         with:
           name: ayanbot-linux
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
+      - run: ls
       - run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
         id: tag
       - uses: actions/create-release@v1
@@ -53,14 +57,14 @@ jobs:
           tag_name: ${{ steps.package-version.outputs.current-version }}
           release_name: Release ${{ steps.package-version.outputs.current-version }}
           draft: true
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./ayanbot-windows
-          asset_name: ayanbot-windows.zip
-          asset_content_type: application/zip
+#      - uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create-release.outputs.upload_url }}
+#          asset_path: ./ayanbot-windows
+#          asset_name: ayanbot-windows.zip
+#          asset_content_type: application/zip
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
