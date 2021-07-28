@@ -3,7 +3,7 @@ const caxa = require('caxa').default;
 (async () => {
     await caxa({
         input: ".",
-        output: "ayanbot.exe",
+        output: "executable/ayanbot.exe",
         command: [
             "{{caxa}}/node_modules/.bin/node",
             "{{caxa}}/index.js",
