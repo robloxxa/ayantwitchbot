@@ -33,7 +33,7 @@ jobs:
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
-      - run: ls
+      - uses: actions/checkout@v2
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
