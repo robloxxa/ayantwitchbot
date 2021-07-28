@@ -6,12 +6,14 @@ jobs:
         os: [windows, ubuntu]
         include:
           - os: windows
+            name: windows
             build: |
               npx caxa --input . --output "windows/ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
             artifact: ayanbot.exe
           - os: ubuntu
+            name: linux
             build: |
-              npx caxa --input . --output "ubuntu/ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+              npx caxa --input . --output "linux/ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
             artifact: ayanbot
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -25,8 +27,8 @@ jobs:
           ${{ matrix.build }}
       - uses: actions/upload-artifact@v2
         with:
-          name: ayanbot-${{ matrix.os }}
-          path: ./${{ matrix.os }}
+          name: ayanbot-${{ matrix.name }}
+          path: ./${{ matrix.name }}
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: [ insiders-build ]
@@ -34,10 +36,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: ayanbot-windows.zip
-      - uses: actions/download-artifact@v2
-        with:
-          name: ayanbot-macos.tgz
+          name: ayanbot-windows
       - uses: actions/download-artifact@v2
         with:
           name: ayanbot-linux.tgz
@@ -55,14 +54,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ayanbot-windows.zip
-          asset_name: ayanbot-windows-${{ steps.tag.outputs.tag }}.zip
+          asset_path: ayanbot-windows
+          asset_name: ayanbot-windows.zip
           asset_content_type: application/vnd.microsoft.portable-executable
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ayanbot-linux.tgz
+          asset_path: ayanbot-linux
           asset_name: ayanbot-linux-${{ steps.tag.outputs.tag }}.tgz
           asset_content_type: application/gzip
