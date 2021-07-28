@@ -33,8 +33,9 @@ jobs:
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
-      - name: Get current package version
-        uses: martinbeentjes/npm-get-version-action@v1.1.0
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
       - uses: actions/download-artifact@v2
         with:
           name: ayanbot-windows
