@@ -7,16 +7,15 @@ jobs:
         include:
           - os: windows
             build: |
-              npx caxa --input . --output "ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-              powershell Compress-Archive ayanbot.exe ayanbot-windows.zip
-            artifact: ayanbot-windows.zip
+              npx caxa --input . --output "windows/ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+            artifact: ayanbot.exe
           - os: ubuntu
             build: |
-              npx caxa --input . --output "ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
-              tar -czf "ayanbot-linux.tgz" "ayanbot"
-            artifact: ayanbot-linux.tgz
+              npx caxa --input . --output "ubuntu/ayanbot" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+            artifact: ayanbot
     runs-on: ${{ matrix.os }}-latest
     steps:
+      - run: echo ls
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -26,8 +25,8 @@ jobs:
           ${{ matrix.build }}
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.artifact }}
-          path: ${{ matrix.artifact }}
+          name: ayanbot-${{ matrix.os }}
+          path: ./${{ matrix.os }}
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: [ insiders-build ]
