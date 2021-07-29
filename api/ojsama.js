@@ -1,6 +1,7 @@
 const ojsama = require("ojsama");
 const readline = require("readline");
 const { readFile } = require('fs/promises')
+
 module.exports = (client) => {
     const self = {
         parse: async (data = {}, options = []) => {
