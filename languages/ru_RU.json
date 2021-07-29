@@ -2,14 +2,14 @@
   "language": "Russian",
   "incorrectString": "Неверное значение, попробуйте ещё раз",
   "setup": {
-    "information": "Пожалуйста имейте ввиду что все данные хранятся локально в {0} и нужны для работы бота (Больше информации здесь **ссылка**)",
+    "information": "Пожалуйста имейте ввиду что все данные хранятся локально в config.json",
     "paste": "Чтобы вставить ваш ключ/пароль в консоль нажмите ПКМ",
     "osuUsername": "Укажите свой никнейм в osu!",
     "osuApiKey": "Укажите osu!api ключ (https://old.ppy.sh/p/api/)",
     "osuIRCPassword": "Укажите osu!irc пароль (https://old.ppy.sh/p/irc/)",
-    "twitchBotToken": "Укажите twitch api ключ бота или ваш собственный (https://twitchapps.com/tmi/)",
+    "twitchBotToken": "Укажите twitch api ключ (https://twitchapps.com/tmi/)",
     "twitchChannelName": "Укажите название вашего канала Twitch",
-    "prefix": "Укажите префикс для бота (Нажмите Enter чтобы оставить '!')",
+    "prefix": "Укажите префикс для бота",
     "ended": "Начальная конфигурация окончена, запускаем бота"
   },
   "bot": {
@@ -28,7 +28,7 @@
   },
   "gosu": {
     "ready": "gosumemory работает",
-    "nodata": "Невозможно получить данные с клиента osu!",
+    "osu_error": "osu! была закрыта, все команды связанные с gosumemory не будут работать",
     "error": "gosumemory не запущен или вы не запустили osu!"
   }
 }
