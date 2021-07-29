@@ -5,14 +5,6 @@ const configPath ='./config.json'
 const path = require('path')
 const chalk = require('chalk')
 module.exports = async (client) => {
-    if (process.argv.includes('CAXA')){ // Since CAXA package builder don't delete old temp directories we doing it by yourself
-        const tempDirPath = path.basename(path.join(__dirname+'/../'))
-        const tempDirs = readdirSync(__dirname + '/../../')
-        tempDirs.forEach(dir => {
-            if (tempDirPath === dir) return
-            rmSync(path.join(__dirname, '/../../', dir), { recursive: true })
-        })
-    }
     if (!existsSync(configPath)) {
         process.title = "Config setup"
         const language = await prompts({
