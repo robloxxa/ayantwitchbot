@@ -1,31 +1,34 @@
 {
-  "language": "Russian",
-  "incorrectString": "Неверное значение, попробуйте ещё раз",
+  "language": "Engish",
+  "incorrectString": "Incorrect input, please try again",
   "setup": {
-    "information": "Пожалуйста имейте ввиду что все данные хранятся локально в {0} и нужны для работы бота (Больше информации здесь **ссылка**)",
-    "osuUsername": "Укажите свой никнейм в osu!",
-    "osuApiKey": "Укажите osu!api ключ (https://old.ppy.sh/p/api/)",
-    "osuIRCPassword": "Укажите osu!irc пароль (https://old.ppy.sh/p/irc/)",
-    "twitchBotToken": "Укажите twitch api ключ бота или ваш собственный (https://twitchapps.com/tmi/)",
-    "twitchChannelName": "Укажите название вашего канала Twitch",
-    "prefix": "Укажите префикс для бота (Нажмите Enter чтобы оставить '!')",
-    "ended": "Начальная конфигурация окончена, запускаем бота"
+    "information": "Note that all your data stored locally on your device in config.json",
+    "paste": "Right Click on mouse to paster your key/password",
+    "osuUsername": "Specify your osu! username",
+    "osuApiKey": "Specify your osu! api key (https://old.ppy.sh/p/api/)",
+    "osuIRCPassword": "Specify your osu! irc password (https://old.ppy.sh/p/irc/)",
+    "twitchBotToken": "Specify your twitch api key (https://twitchapps.com/tmi/)",
+    "twitchChannelName": "Specify your twitch channel name",
+    "prefix": "Specify Bot command prefix",
+    "ended": "Configuration is over, starting bot"
   },
   "bot": {
-    "ready": "Бот работает!",
-    "error": "Произошла ошибка!"
+    "ready": "Bot is ready!",
+    "error": "An error occur!"
   },
   "bancho": {
-    "ready": "Bancho подключено",
-    "error": "Невозможно подключиться к Bancho, возможно вы ввели неверные данные в config.json"
+    "ready": "Connected to Bancho",
+    "disconnected": "Disconnected from Bancho",
+    "error": "Can't connect to Bancho, maybe you put wrong auth data in config.json"
   },
   "twitch": {
-    "ready": "Twitch подключен",
-    "disconnected": "Отключен от Twitch",
-    "error": "Невозможно подключиться к Twitch, возможно вы ввели неверные данные в config.json"
+    "ready": "Connected to Twitch",
+    "disconnected": "Disconnected from twitch",
+    "error": "Can't connect to twitch, maybe you put wrong auth data in config.json"
   },
   "gosu": {
-    "ready": "gosumemory запущен",
-    "error": "Произошла ошибка"
+    "ready": "gosumemory is working",
+    "osu_error": "osu! was closed, all gosumemory related commands will not work",
+    "error": "gosumemory was closed or never opened. Please open gosumemory"
   }
 }
