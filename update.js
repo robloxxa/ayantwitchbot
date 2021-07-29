@@ -14,11 +14,11 @@ module.exports = async (client) => {
     }
     client.logger.log('Checking for new updates')
     const release = await axios.get('https://api.github.com/repos/robloxxa/ayantwitchbot/releases/latest')
-    if (release.data.tag === version) return client.logger.log('You have latest version ('+version+')')
+    if (release.data.tag_name === version) return client.logger.log('You have latest version ('+version+')')
     if (!release.data || release.data.message === 'Not Found') return client.logger.log(`No response from github`)
     const type = (process.platform === 'win32') ? 'application/vnd.microsoft.portable-executable' : 'application/octet-stream'
     const asset = release.data.assets.find(e => e.content_type === type)
-    client.logger.log('Download new update')
+    client.logger.log('Downloading new update')
     const { data } = await axios.get(asset.browser_download_url,  { responseType: "arraybuffer" })
     await rename(process.title.split(' - ').pop(), 'ayanbot-old')
     await writeFile(process.cwd()+'\\'+asset.name, data)

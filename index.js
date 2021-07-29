@@ -14,4 +14,10 @@ const init = async () => {
     }
 }
 
-init().then(() => client.logger.ready(client.interface.bot.ready)).catch(client.logger.error)
+init()
+    .then(() => client.logger.ready(client.interface.bot.ready))
+    .catch(async (e) => {
+        client.logger.error(e)
+        client.logger.warn('Program will be closed in 5 seconds')
+        await setTimeout(process.exit, 5000)
+    })
