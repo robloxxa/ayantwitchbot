@@ -1,8 +1,7 @@
-const { writeFileSync, existsSync, mkdirSync, readdirSync, rmSync } = require('fs');
+const { writeFileSync, existsSync } = require('fs');
 const defaultConfig = require ('./config.default.json')
 const prompts = require("prompts");
-const configPath ='./config.json'
-const path = require('path')
+const configPath = process.cwd()+'\\config.json'
 const chalk = require('chalk')
 module.exports = async (client) => {
     if (!existsSync(configPath)) {
@@ -63,9 +62,9 @@ module.exports = async (client) => {
             if (!config[i]) config[i] = defaultConfig[i]
         }
         writeFileSync(configPath, JSON.stringify(config, null, 2))
-        client.config = require(process.cwd()+'//config.json')
+        client.config = require(configPath)
     } else {
-        client.config = require(process.cwd()+'//config.json')
+        client.config = require(configPath)
         for (let i of Object.keys(defaultConfig)) {
             if (!client.config[i]) client.config[i] = defaultConfig[i]
         }
