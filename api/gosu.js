@@ -1,17 +1,14 @@
-const fetch = require('node-fetch')
-
-
+const axios = require('axios')
 
 module.exports = async client => {
     const self = {
         data: async () => {
             try {
-                const data = await fetch('http://localhost:24050/json')
-                    .then(res => res.json()).catch(e => {})
+                const data = await axios.get('http://localhost:24050/json')
                 if (!data || data.error) throw client.interface.gosu.error
                 return data
             } catch (e) {
-                client.logger.warn(e)
+                client.logger.error(e)
                 return false
             }
         }

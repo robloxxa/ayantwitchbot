@@ -11,9 +11,9 @@
   "author": "robloxxa",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bancho.js": "^0.9.7",
     "chalk": "^4.1.1",
-    "node-fetch": "^2.6.1",
     "node-stream-zip": "^1.14.0",
     "ojsama": "^2.2.0",
     "prompts": "^2.4.1",
