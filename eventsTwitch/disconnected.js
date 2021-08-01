@@ -1,1 +1,1 @@
-module.exports = (client) => client.logger.warn(client.language.twitch.disconnected)
+module.exports = (client) => client.logger.warn(client.interface.twitch.disconnected)

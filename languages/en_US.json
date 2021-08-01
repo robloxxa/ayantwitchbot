@@ -1,5 +1,5 @@
 {
-  "language": "Engish",
+  "language": "English",
   "incorrectString": "Incorrect input, please try again",
   "setup": {
     "information": "Note that all your data stored locally on your device in config.json",

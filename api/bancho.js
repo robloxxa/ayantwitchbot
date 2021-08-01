@@ -9,7 +9,7 @@ module.exports = async (client) => {
         })
         await bancho.connect()
         client.logger.ready(client.interface.bancho.ready)
-        if (client.config.debug) bancho.on('PM', message => client.logger.debug(message.message))
+        if (client.config.debug) bancho.on('PM', message => client.logger.debug(`(Bancho) ${message.user.ircUsername}: ${message.message}`))
         bancho.on('disconnected', (error) => client.logger.warn(client.interface.bancho.disconnected))
         bancho.say = (message) => bancho.getSelf().sendMessage(message)
         return bancho
