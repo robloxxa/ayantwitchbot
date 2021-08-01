@@ -4,7 +4,7 @@ exports.conf = {
     modOnly: false,
     regexp: {
         only: true,
-        value: /(?:http:\/\/|https:\/\/)?(?:osu|old)\.(?:gatari|ppy)\.(?:sh|pw)\/(b|s|beatmapsets)\/(\d*)#?(?:osu|mania|taiko|catch)?\/?(\d*) ?\+?(\w*)/gi
+        value: /(?:(?:http:\/\/|https:\/\/)?(?:osu|old)\.(?:gatari|ppy)\.(?:sh|pw)\/)?(b|s|beatmapsets)\/(\d*)#?(?:osu|mania|taiko|catch)?\/?(\d*) ?\+?(\w*)/gi
     }
 }
 
