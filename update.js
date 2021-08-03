@@ -16,7 +16,7 @@ module.exports = async (client) => {
     }
     client.logger.log('Checking for new updates')
     const release = await axios.get('https://api.github.com/repos/robloxxa/ayantwitchbot/releases/latest').catch(() => {})
-    if (!release || release.data.message === 'Not Found') return client.logger.log(`No response from github`)
+    if (!release || release.data.message === 'Not Found' || !release.data.assets) return client.logger.log(`No response from github`)
     if (semver.satisfies(version, `>=${release.data.tag_name}`)) return client.logger.log('You have latest version ('+version+')')
     if (!client.config.autoUpdate) return client.logger.log('AutoUpdate is off. New update available')
     const type = (process.platform === 'win32') ? 'application/vnd.microsoft.portable-executable' : 'application/octet-stream'
