@@ -11,7 +11,7 @@ Bot for handling osu! related commands/links written on Node JS
 3. Start osu!
 4. Start gosumemory
 5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot | node index.js)
->Please note that Linux build is not tested and can be very broken
+>Please note that Linux build is not tested and could be very unstable
 ## Default Commands
 * !np - show current map\
 ![](https://i.imgur.com/h11lplS.png)
