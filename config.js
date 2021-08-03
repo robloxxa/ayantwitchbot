@@ -1,10 +1,12 @@
-const { writeFileSync, existsSync } = require('fs');
-const defaultConfig = require ('./config.default.json')
+const { outputJson, pathExists, copy} = require('fs-extra');
+const defaultConfig = require('./config.default.json')
 const prompts = require("prompts");
 const configPath = process.cwd()+'\\config.json'
+const defaultCommandsPath = process.cwd()+'\\commands\\defaultCommands'
 const chalk = require('chalk')
 module.exports = async (client) => {
-    if (!existsSync(configPath)) {
+    if (!await pathExists(defaultCommandsPath)) await copy(__dirname+'\\defaultCommands', defaultCommandsPath, { overwrite: false })
+    if (!await pathExists(configPath)) {
         process.title = "Config setup"
         const language = await prompts({
             type: 'select',
@@ -61,13 +63,18 @@ module.exports = async (client) => {
         for (let i of Object.keys(defaultConfig)) {
             if (!config[i]) config[i] = defaultConfig[i]
         }
-        writeFileSync(configPath, JSON.stringify(config, null, 2))
+        await outputJson(configPath, config, { spaces: 2 })
         client.config = require(configPath)
     } else {
         client.config = require(configPath)
+        let edited = false
         for (let i of Object.keys(defaultConfig)) {
-            if (!client.config[i]) client.config[i] = defaultConfig[i]
+            if (!client.config[i]) {
+                edited = true
+                client.config[i] = defaultConfig[i]
+            }
         }
+        if (edited) await outputJson(configPath, client.config, { spaces: 2 })
         client.interface = require('./languages/' + client.config.language + '.json')
     }
 }
