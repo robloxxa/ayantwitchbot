@@ -3,9 +3,9 @@ const client = {}
 require('./modules/functions')(client)
 client.logger = require('./modules/logger')(client)
 const init = async () => {
-    await require('./update')(client)
-    process.title = 'ayantwitchbot'
     await require('./config')(client)
+    process.title = 'ayantwitchbot'
+    await require('./update')(client)
     const defaultApi = await readdir(__dirname+'/./api')
     for (const f of defaultApi) {
         if (!f.endsWith(".js")) continue
