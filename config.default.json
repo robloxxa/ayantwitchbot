@@ -6,5 +6,6 @@
   "twitchChannelName": null,
   "prefix": "!",
   "language": "en_US",
-  "debug": false
+  "debug": false,
+  "autoUpdate": true
 }
