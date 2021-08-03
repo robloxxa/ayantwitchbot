@@ -1,7 +1,7 @@
 {
   "name": "ayanbot",
   "version": "v1.0.0",
-  "description": "",
+  "description": "osu! related twitch bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -14,9 +14,10 @@
     "axios": "^0.21.1",
     "bancho.js": "^0.9.7",
     "chalk": "^4.1.1",
-    "node-stream-zip": "^1.14.0",
+    "fs-extra": "^10.0.0",
     "ojsama": "^2.2.0",
     "prompts": "^2.4.1",
+    "semver": "^7.3.5",
     "tmi.js": "^1.8.3"
   },
   "devDependencies": {

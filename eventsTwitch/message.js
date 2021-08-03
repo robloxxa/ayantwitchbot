@@ -7,6 +7,7 @@ module.exports = async (client, channel, author, message, self) => {
     const command = (regexp) ? regexp : args.shift().toLowerCase()
     const cmd = client.commands.get(command) || client.commands.get(regexp) || client.commands.get(client.aliases.get(command));
     if (!cmd) return
+    if (cmd.conf.modOnly && (!author.mod || !author.badges.broadcaster)) return
     if ((cmd.conf.regexp && cmd.conf.regexp.only) && cmd.conf.name === args[0]) return
     cmd.run(client, channel, author, args)
 }

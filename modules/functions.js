@@ -19,6 +19,7 @@ module.exports = async (client) => {
                 client.aliases.set(alias, props.conf.name);
             });
             if (props.conf.regexp) client.regexp.set(props.conf.name, props.conf.regexp.value)
+            client.logger.ready(`command ${props.conf.name} loaded`)
             return true;
         } catch (e) {
             client.logger.error(`Unable to load command ${commandName.split('//')[2]}`)
