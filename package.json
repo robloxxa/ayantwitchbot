@@ -1,7 +1,7 @@
 {
   "name": "ayanbot",
   "version": "v1.0.0",
-  "description": "",
+  "description": "osu! related twitch bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
