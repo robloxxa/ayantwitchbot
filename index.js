@@ -2,6 +2,7 @@ const { readdir } = require('fs/promises')
 const client = {}
 require('./modules/functions')(client)
 client.logger = require('./modules/logger')(client)
+client.execPath = process.title
 const init = async () => {
     await require('./config')(client)
     process.title = 'ayantwitchbot'
