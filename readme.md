@@ -34,7 +34,7 @@ exports.conf = { // Configuration for commands name, aliases and regular express
       aliases: ['cs', 'skincurrent'],
       modOnly: false,
       regexp: { // If you don't need regular expression you can simply delete this object
-          only: false, // If you true command will be called only by regexp
+          only: false, // If true, command will be called only by regexp
           value: '/skin?/g'
       }
   }
@@ -52,26 +52,27 @@ const myJson = require(process.cwd()+'//myJson.json')
 const fs = require('fs') // You still can import Node js modules and modules listed in package json
 ```
 ## Config
-All data specified in config setup will be placed in config.json within executable file\
+All data specified in config setup will be placed in config.json within executable file
+* `osuUsername` - your osu! username. Need for osu! chat (beatmap requests)
+* `osuApiKey` (https://osu.ppy.sh/p/api) - your osu!api key. Need for getting beatmap info and user info
+* `osuIRCPassword` (https://osu.ppy.sh/p/irc) - your osu! IRC password. Need for osu! chat (beatmap requests)
+* `twitchBotToken` (https://twitchapps.com/tmi) - twitch TMI Token. You can create another twitch account for bot and use its token instead
+* `twitchChannelName` - your twitch channel name
+* `prefix` - command prefix, default '!'
+* `langauge` - bot language
+* `debug` - if `true` console will output additional data
+* `autoUpdate` - set to `false` if you want to manually update your bot
+### config.json
 ```json
 {
-  // Your osu! username. Need for osu! chat (beatmap requests)
   "osuUsername": null, 
-  // osu!api key. Need for getting beatmap info and user info
-  // https://osu.ppy.sh/p/api
   "osuApiKey": null, 
-  // Your osu! IRC password. Need for osu! chat (beatmap requests)
-  // https://osu.ppy.sh/p/irc
   "osuIRCPassword": null, 
-  // Twitch TMI Token. You can create another twitch account for bot and user its token
   "twitchBotToken": null,
-  // Your twitch channel name
   "twitchChannelName": null,
   "prefix": "!",
   "language": "en_US",
-  // If true console will output additional data
   "debug": false, 
-  // Set to false if you want to manually update your bot
   "autoUpdate": true 
 }
 ```
