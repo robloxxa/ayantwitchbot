@@ -4,7 +4,10 @@ const prompts = require("prompts");
 const configPath = process.cwd()+'\\config.json'
 const defaultCommandsPath = process.cwd()+'\\commands\\defaultCommands'
 const chalk = require('chalk')
+
+const onCancel = () => { throw 'Config Setup have been interrupted, please restart the bot' }
 module.exports = async (client) => {
+    try {
     if (!await pathExists(defaultCommandsPath)) await copy(__dirname+'\\defaultCommands', defaultCommandsPath, { overwrite: false })
     if (!await pathExists(configPath)) {
         process.title = "Config setup"
@@ -16,7 +19,7 @@ module.exports = async (client) => {
                 {title: 'English', value: 'en_US'},
                 {title: 'Russian', value: 'ru_RU'}, //TODO: Load from languages folder
             ],
-        });
+        },{ onCancel });
 
         client.interface = require('./languages/'+language.value+'.json')
         console.log(chalk.red(client.interface.setup.paste))
@@ -57,7 +60,7 @@ module.exports = async (client) => {
                 initial: '!',
                 message: client.interface.setup.prefix,
                 // validate: (value) => value === "" ? client.interface.incorrectString : true
-            }])
+            }], { onCancel })
 
         config.language = language.value
         for (let i of Object.keys(defaultConfig)) {
@@ -76,5 +79,8 @@ module.exports = async (client) => {
         }
         if (edited) await outputJson(configPath, client.config, { spaces: 2 })
         client.interface = require('./languages/' + client.config.language + '.json')
+    }
+    } catch (e) {
+        throw e
     }
 }
