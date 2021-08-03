@@ -3,7 +3,7 @@
   "incorrectString": "Incorrect input, please try again",
   "setup": {
     "information": "Note that all your data stored locally on your device in config.json",
-    "paste": "Right Click on mouse to paster your key/password",
+    "paste": "Right Click on mouse to paste your key/password",
     "osuUsername": "Specify your osu! username",
     "osuApiKey": "Specify your osu! api key (https://old.ppy.sh/p/api/)",
     "osuIRCPassword": "Specify your osu! irc password (https://old.ppy.sh/p/irc/)",

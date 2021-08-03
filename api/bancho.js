@@ -15,8 +15,7 @@ module.exports = async (client) => {
         return bancho
     } catch (e) {
         client.logger.error(client.interface.bancho.error)
-        client.logger.error(e)
-        client.logger.warn('Bot will not send any messages in your osu! dm. Please check your auth data in config.default.json and restart the bot')
+        client.logger.error('(Bancho) '+e)
         return {
             say: () => false
         }

@@ -1,6 +1,6 @@
 {
   "name": "ayanbot",
-  "version": "v1.0.0",
+  "version": "v1.0.1",
   "description": "osu! related twitch bot",
   "main": "index.js",
   "scripts": {
