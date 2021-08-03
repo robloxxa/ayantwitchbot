@@ -1,5 +1,4 @@
 const ojsama = require("ojsama");
-const readline = require("readline");
 const { readFile } = require('fs/promises')
 
 module.exports = (client) => {
@@ -22,7 +21,7 @@ module.exports = (client) => {
                 combo: combo,
                 miss: miss,
                 acc: acc,
-            });
+            })
             return {
                 total: pp.total.toFixed(2).toString()+'pp',
                 combo: (combo) ? combo+'x' : '',
