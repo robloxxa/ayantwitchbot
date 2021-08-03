@@ -5,12 +5,13 @@ Bot for handling osu! related commands/links written on Node JS
 * [Default Commands](#default-commands)
 * [Creating Custom Commands](#creating-custom-commands)
 * [About Config](#config)
+
 ## Setup
-1. Download ayantwitchbot ( [Windows]() | [Linux]() )
+1. Download ayantwitchbot ( [Windows](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot.exe) | [Linux](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot) )
 2. Download [gosumemory](https://github.com/l3lackShark/gosumemory)
 3. Start osu!
 4. Start gosumemory
-5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot | node index.js)
+5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot )
 >Please note that Linux build is not tested and could be very unstable
 ## Default Commands
 * !np - show current map\
