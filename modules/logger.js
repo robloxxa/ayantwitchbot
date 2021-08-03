@@ -2,7 +2,7 @@
 Logger class for easy and aesthetically pleasing console logging 
 */
 const chalk = require('chalk')
-
+// TODO: completely rewrite logger
 module.exports = (client) => {
     const self = {
         log: (content, type = "log") => {
