@@ -41,7 +41,7 @@ module.exports = async client => {
         return twitch
     } catch (e) {
         client.logger.error(client.interface.twitch.error)
-        client.logger.error(e)
+        client.logger.error('(Twitch) '+e)
         return false
     }
 
