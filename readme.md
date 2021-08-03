@@ -7,8 +7,9 @@ Bot for handling osu! related commands/links written on Node JS
 * [About Config](#config)
 
 ## Setup
-1. Download ayantwitchbot ( [Windows](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot.exe) | [Linux](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot) )
-2. Download [gosumemory](https://github.com/l3lackShark/gosumemory)
+1. Download ayantwitchbot ( [Windows](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot.exe) | [Linux](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot) )\
+    1.1 You can place it anywhere just avoid non-english letters and whitespaces in path
+2. Download [gosumemory](https://github.com/l3lackShark/gosumemory) \
 3. Start osu!
 4. Start gosumemory
 5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot )
@@ -33,7 +34,7 @@ You can write your own commands with javascript and use it in Bot
 
 Script should be placed in **/commands/** folder within executable file
 >If you wanna import additional files (Script, json, or Native Module), you can make folder for a command
-### Example
+### !current skin example
 ```javascript
 exports.conf = { // Configuration for commands name, aliases and regular expression
       name: 'currentskin',
