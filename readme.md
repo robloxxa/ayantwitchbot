@@ -1,5 +1,10 @@
 # Ayan Twitch bot
 Bot for handling osu! related commands/links written on Node JS
+
+* [Setup](#setup)
+* [Default Commands](#default-commands)
+* [Creating Custom Commands](#creating-custom-commands)
+* [About Config](#config)
 ## Setup
 1. Download ayantwitchbot ( [Windows]() | [Linux]() )
 2. Download [gosumemory](https://github.com/l3lackShark/gosumemory)
