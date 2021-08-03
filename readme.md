@@ -9,7 +9,7 @@ Bot for handling osu! related commands/links written on Node JS
 ## Setup
 1. Download ayantwitchbot ( [Windows](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot.exe) | [Linux](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot) )\
     1.1 You can place it anywhere just avoid non-english letters and whitespaces in path
-2. Download [gosumemory](https://github.com/l3lackShark/gosumemory) \
+2. Download [gosumemory](https://github.com/l3lackShark/gosumemory)
 3. Start osu!
 4. Start gosumemory
 5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot )
