@@ -22,7 +22,7 @@ module.exports = async (client) => {
         },{ onCancel });
 
         client.interface = require('./languages/'+language.value+'.json')
-        console.log(chalk.red(client.interface.setup.paste))
+        console.log(chalk.yellow(client.interface.setup.paste))
         const config = await prompts([
             {
                 type: 'text',
@@ -53,13 +53,6 @@ module.exports = async (client) => {
                 name: 'twitchChannelName',
                 message: client.interface.setup.twitchChannelName,
                 validate: (value) => value === "" ? client.interface.incorrectString : true
-            },
-            {
-                type: 'text',
-                name: 'prefix',
-                initial: '!',
-                message: client.interface.setup.prefix,
-                // validate: (value) => value === "" ? client.interface.incorrectString : true
             }], { onCancel })
 
         config.language = language.value
