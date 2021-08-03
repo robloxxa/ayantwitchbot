@@ -11,20 +11,21 @@ module.exports = async (client) => {
     }
     client.loadCommand = (commandName) => {
         try {
-            const props = require(commandName);
-            if (!props.conf) throw `Can't find conf parameters`
-            if (!props.conf.name) throw `Cannot find conf.name`
-            client.commands.set(props.conf.name, props);
+            const props = require(commandName)
+            if (props.init) props.init(client)
+            if (!props.conf && !props.init) throw `Can't find conf parameters`
+            if (!props.conf.name && !props.init) throw `Cannot find conf.name`
+            client.commands.set(props.conf.name, props)
             if (props.conf.aliases) props.conf.aliases.forEach(alias => {
-                client.aliases.set(alias, props.conf.name);
+                client.aliases.set(alias, props.conf.name)
             });
-            if (props.conf.regexp) client.regexp.set(props.conf.name, props.conf.regexp.value)
-            client.logger.ready(`command ${props.conf.name} loaded`)
-            return true;
+            if (props.conf.regexp && props.conf.regexp.value) client.regexp.set(props.conf.name, props.conf.regexp.value)
+            client.logger.ready(`command ${commandName.split('//').pop()} loaded`)
+            return true
         } catch (e) {
-            client.logger.error(`Unable to load command ${commandName.split('//')[2]}`)
-            client.logger.error(`${e} in ${commandName.split('//')[2]}`)
-            return false;
+            client.logger.error(`Unable to load command ${commandName.split('//').pop()}`)
+            client.logger.error(`${e} in ${commandName.split('//').pop()}`)
+            return false
         }
     }
 
