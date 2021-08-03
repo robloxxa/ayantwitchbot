@@ -5,13 +5,12 @@ const path = require('path')
 const { spawn } = require('child_process')
 const semver = require('semver')
 module.exports = async (client) => {
-    console.log()
     if (!process.argv.includes('CAXA')) return
     await rm(process.cwd()+'//ayanbot-old').catch(() => {})
     const tempDirPath = path.basename(path.join(__dirname+'/../'))
     const tempDirs = await readdir(__dirname + '/../../')
     for (const dir of tempDirs) {
-        if (tempDirPath === dir) continue;
+        if (tempDirPath === dir) continue
         await rm(path.join(__dirname, '/../../', dir), { recursive: true })
     }
     client.logger.log('Checking for new updates')
