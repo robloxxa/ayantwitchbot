@@ -4,7 +4,9 @@
   "osuIRCPassword": null,
   "twitchBotToken": null,
   "twitchChannelName": null,
+  "gosuPort": 24050,
   "prefix": "!",
+  "timeout": 1500,
   "language": "en_US",
   "debug": false,
   "autoUpdate": true

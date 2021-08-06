@@ -15,6 +15,7 @@ Bot for handling osu! related commands/links written on Node JS
 5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot )
 >Please note that Linux build is not tested and could be very unstable
 ## Default Commands
+>**You can also check out [commands](https://github.com/robloxxa/ayantwitchbot/tree/master/commands) made by me or other people that's not included with bot**
 * !np - show current map\
 ![](https://i.imgur.com/h11lplS.png)
 * !currentskin - show current skin\
@@ -35,6 +36,7 @@ You can write your own commands with javascript and use it in Bot
 Script should be placed in **/commands/** folder within executable file
 >If you wanna import additional files (Script, json, or Native Module), you can make folder for a command
 ### !current skin example
+**You can see more examples in [commands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/commands) and [defaultCommands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/defaultCommands)**
 ```javascript
 exports.conf = { // Configuration for commands name, aliases and regular expression
       name: 'currentskin',
@@ -54,10 +56,11 @@ exports.conf = { // Configuration for commands name, aliases and regular express
 ```
 ### Import files placed within script
 ```javascript
-const myAnotherScript = require(process.cwd()+'//anotherscript.js') // If file placed within script
-const myJson = require(process.cwd()+'//myJson.json')
+const myAnotherScript = require(__dirname+'//anotherscript.js') // If file placed within script
+const myJson = require(__dirname+'//myJson.json')
 const fs = require('fs') // You still can import Node js modules and modules listed in package json
 ```
+* Use `process.cwd()` if you need executable path
 ## Config
 All data specified in config setup will be placed in config.json within executable file
 * `osuUsername` - your osu! username. Need for osu! chat (beatmap requests)
@@ -65,10 +68,12 @@ All data specified in config setup will be placed in config.json within executab
 * `osuIRCPassword` (https://osu.ppy.sh/p/irc) - your osu! IRC password. Need for osu! chat (beatmap requests)
 * `twitchBotToken` (https://twitchapps.com/tmi) - twitch TMI Token. You can create another twitch account for bot and use its token instead
 * `twitchChannelName` - your twitch channel name
-* `prefix` - command prefix, default '!'
+* `prefix` - command prefix (*Default:* `!`)
 * `langauge` - bot language
 * `debug` - if `true` console will output additional data
 * `autoUpdate` - set to `false` if you want to manually update your bot
+* `gosuPort` - gosumemory port (*Default:* `24050`)
+* `timeout` - Twitch Chat global timeout in milliseconds (*Default:* `1500`)
 ### config.json
 ```json
 {

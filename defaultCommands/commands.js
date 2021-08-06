@@ -3,6 +3,7 @@
 exports.conf = {
     name: 'commands',
     modOnly: false,
+    aliases: ['cmds']
 }
 exports.run = async (client, channel, author, value) => {
     let commands = []

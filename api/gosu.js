@@ -4,7 +4,7 @@ module.exports = async client => {
     const self = {
         data: async () => {
             try {
-                const { data } = await axios.get('http://localhost:24050/json').catch(() => false)
+                const { data } = await axios.get(`http://localhost:${client.config.gosuPort}/json`).catch(() => false)
                 if (!data) throw client.interface.gosu.error
                 if (data.error) throw client.interface.gosu.osu_error
                 return data
