@@ -1,6 +1,6 @@
 exports.conf = {
     name: 'currentskin',
-    aliases: ['cs', 'skincurrent'],
+    aliases: ['skincurrent', 'skin'],
     modOnly: false,
     regexp: {
         only: false, // Set this to true if you don't wanna user call command within its name
