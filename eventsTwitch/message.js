@@ -1,10 +1,8 @@
-let timeout = 0
-
 module.exports = async (client, channel, author, message, self) => {
     try {
         if (self) return
-        if (Date.now() - lasttimeout < client.config.timeout) return
-        timeout = Date.now()
+        if (Date.now() - client.twitch.lastTimeOut < client.config.timeout) return
+        client.twitch.lastTimeOut = Date.now()
         client.logger.debug(`(Twitch) ${author.username}: ${message}`)
         const regexp = (message.indexOf(client.config.prefix) === 0) ? false : client.getByRegexp(message)
         if (message.indexOf(client.config.prefix) !== 0 && !regexp) return
