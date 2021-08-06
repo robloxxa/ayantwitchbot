@@ -1,4 +1,5 @@
 const modsReference = ['SO', 'EZ', 'NF', 'HD', 'HT', 'DT', 'HR', 'FL', 'PF', 'SD', 'RX', 'AP', 'AT', 'SV2', 'ScoreV2']
+const moment = require('moment')
 module.exports = async (client) => {
     client.getByRegexp = (value) => {
         for (let [name, regex] of client.regexp) {
@@ -48,27 +49,20 @@ module.exports = async (client) => {
     }
     client.getGosuRankedStatus = (rankedStatus) => {
         switch (rankedStatus) {
-            case 0: return 'WIP'
             case 1: return 'Not Submitted'
             case 2: return 'Unranked'
-            case 3: return 'Approved'
-            case 5: return 'Ranked'
+            case 4: return 'Ranked'
+            case 5: return 'Approved'
             case 6: return 'Qualified'
             case 7: return 'Loved'
             default: return 'Unranked'
         }
     }
-    Number.prototype.toTime = function(isSec) {
-        const ms = isSec ? this * 1e3 : this,
-            lm = ~(4 * !!isSec),  /* limit fraction */
-            fmt = new Date(ms).toISOString().slice(11, lm);
-        // if (ms >= 8.64e7) {  /* >= 24 hours */
-        //     const parts = fmt.split(/:(?=\d{2}:)/);
-        //     parts[0] -= -24 * (ms / 8.64e7 | 0);
-        //     return parts.join(':');
-        // }
-
-        return fmt.startsWith('00') ? fmt.slice(3) : fmt
+    Number.prototype.toTime = function() {
+        return moment()
+            .startOf('day')
+            .seconds(this)
+            .format((this < 3600) ? 'mm:ss' : 'H:mm:ss')
     }
 
 }
