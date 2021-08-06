@@ -18,7 +18,7 @@ exports.run = async (client, channel, author, value) => {
         const metadata = beatmaps[0]
         const rankedStatus = client.getApiRankedStatus(metadata.approved)
         const mods = (link[4].length > 1) ? '+'+client.parseMods(link[4]) : ''
-        const time = metadata.totalLength.toTime(true)
+        const time = metadata.totalLength.toTime()
         await client.bancho.say(
             `${author.username} > [https://osu.ppy.sh/b/${id} [${rankedStatus}] ${metadata.artist} - ${metadata.title} [${metadata.version}]${mods}] ${time}⏰ ${metadata.difficultyRating.toFixed(2)}✰ ${metadata.bpm.toFixed()}BPM`
         )
