@@ -9,9 +9,9 @@ Bot for handling osu! related commands/links written on Node JS
 ## Setup
 1. Download ayantwitchbot ( [Windows](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot.exe) | [Linux](https://github.com/robloxxa/ayantwitchbot/releases/latest/download/ayanbot) )\
     1.1 You can place it anywhere just avoid non-english letters and whitespaces in path
-2. Download [gosumemory](https://github.com/l3lackShark/gosumemory)
+2. Download [Gosumemory](https://github.com/l3lackShark/gosumemory) or [StreamCompanion](https://github.com/Piotrekol/StreamCompanion)
 3. Start osu!
-4. Start gosumemory
+4. Start Gosumemory or StreamCompanion
 5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot )
 >Please note that Linux build is not tested and could be very unstable
 ## Default Commands
@@ -27,7 +27,7 @@ Bot for handling osu! related commands/links written on Node JS
 ![](https://i.imgur.com/JWBnvTt.png)
 * \*osu! profile link\* - show user info in twitch chat\
 ![](https://i.imgur.com/oMnI2k5.png)
->*For !np, !currentskin and !pp you need **[gosumemory](https://github.com/l3lackShark/gosumemory)***
+>*For !np, !currentskin and !pp you need **[gosumemory](https://github.com/l3lackShark/gosumemory)** or StreamCompanion*
 
 >*All .js command files placed at **/commands/defaultCommands** with executable file*
 ## Creating custom commands
@@ -35,7 +35,7 @@ You can write your own commands with javascript and use it in Bot
 
 Script should be placed in **/commands/** folder within executable file
 >If you wanna import additional files (Script, json, or Native Module), you can make folder for a command
-### !current skin example
+### !currentskin example
 **You can see more examples in [commands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/commands) and [defaultCommands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/defaultCommands)**
 ```javascript
 exports.conf = { // Configuration for commands name, aliases and regular expression
@@ -54,6 +54,16 @@ exports.conf = { // Configuration for commands name, aliases and regular express
       client.twitch.say(channel, `Current skin: ${data.settings.folders.skin}`) 
  }
 ```
+### `client` properties
+By default `client` object has 5 main properties
+* `client.twitch` - a [tmi.js](https://github.com/tmijs/tmi.js) Client class
+    * *`client.twitch.say(channel, 'something')`* to say something in twitch chat
+* `client.bancho` - a [bancho.js](https://bancho.js.org) Client class
+* `client.gosu` - an object for getting osu data from osu memory readers like gosumemory or streamcompanion
+    * (async) `client.gosu.data()` - get data from osu! memory reader
+* `client.ojsama` - an [ojsama](https://github.com/Francesco149/ojsama) module with custom function property `parse`
+    * `client.ojsama.parse(osuReaderData, [modes = '+HDDT', acc = '100%', combo = '2000x', miss = '0miss'])` - returns an object with total pp, accuracy etc.
+* `client.logger` - a logger for console. See [modules/logger.js](https://github.com/robloxxa/ayantwitchbot/blob/master/modules/logger.js) for more information
 ### Import files placed within script
 ```javascript
 const myAnotherScript = require(__dirname+'//anotherscript.js') // If file placed within script
@@ -85,6 +95,8 @@ All data specified in config setup will be placed in config.json within executab
   "prefix": "!",
   "language": "en_US",
   "debug": false, 
-  "autoUpdate": true 
+  "autoUpdate": true, 
+  "gosuPort": 24050,
+  "timeout": 1500
 }
 ```
