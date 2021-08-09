@@ -35,7 +35,7 @@ module.exports = async client => {
             let eventName = f.split(".")[0]
             twitch.on(eventName, event.bind(null, client))
         })
-
+        //TODO: Maybe make a wrap of tmi.say()(without 'channel parameter) function since we don't need to send messages on other channels
         await twitch.connect()
 
         return twitch
