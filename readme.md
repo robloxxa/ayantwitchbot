@@ -57,7 +57,7 @@ exports.conf = { // Configuration for commands name, aliases and regular express
 ### `client` properties
 By default `client` object has 5 main properties
 * `client.twitch` - a [tmi.js](https://github.com/tmijs/tmi.js) Client class
-    * *`client.twitch.say(channel, 'something')`* to say something in twitch chat
+    * `client.twitch.say(channel, 'something')` - say something in twitch chat
 * `client.bancho` - a [bancho.js](https://bancho.js.org) Client class
 * `client.gosu` - an object for getting osu data from osu memory readers like gosumemory or streamcompanion
     * (async) `client.gosu.data()` - get data from osu! memory reader
