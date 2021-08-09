@@ -41,7 +41,7 @@ exports.init = async (client) => {
                 case 2:
                     let mods = (data.menu.mods.str) ? '+'+data.menu.mods.str : ""
                     presence.state = (data.gameplay.name === uData.username) ? 'Playing a map '+mods : `Watching ${data.gameplay.name} gameplay ${mods}`
-                    bmstats = `AR:${data.menu.bm.stats.AR} CS:${data.menu.bm.stats.CS} OD:${data.menu.bm.stats.OD} HP:${data.menu.bm.stats.HP}`
+                    bmstats = `AR:${data.menu.bm.stats.AR.round(1)} CS:${data.menu.bm.stats.CS.round(1)} OD:${data.menu.bm.stats.OD.round(1)} HP:${data.menu.bm.stats.HP.round(1)}`
                     presence.smallImageKey = (data.gameplay.hits.grade.current) ? data.gameplay.hits.grade.current.toLowerCase() : 'n'
                     presence.smallImageText = 'Rank: '+data.gameplay.hits.grade.current
                     presence.startTimestamp = Date.now() - data.menu.bm.time.current
