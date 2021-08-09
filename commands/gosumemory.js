@@ -7,7 +7,6 @@ exports.conf = {
 }
 
 exports.run = async (client, channel, author, [value]) => {
-    throw 'error'
     const data = await client.gosu.data()
     if (!data) return
     const getKey = (data, keys) => {
