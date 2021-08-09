@@ -64,6 +64,8 @@ module.exports = async (client) => {
             .seconds(this)
             .format((this < 3600) ? 'mm:ss' : 'H:mm:ss')
     }
-
+    Number.prototype.round = function (d) {
+       return Math.round(this * Math.pow(10, d)) / Math.pow(10, d)
+    }
 }
 

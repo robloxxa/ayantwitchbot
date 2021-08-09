@@ -7,11 +7,11 @@ jobs:
         include:
           - os: windows
             name: windows
-            build: npx caxa --input . --output "windows/ayanbot.exe" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+            build: npx caxa --input . --output "windows/ayanbot.exe" --exclude "**/customCommands/**" ".*" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
             artifact: ayanbot.exe
           - os: ubuntu
             name: linux
-            build: npx caxa --input . --output "linux/ayanbot-linux" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
+            build: npx caxa --input . --output "linux/ayanbot-linux" --exclude "**/customCommands/**" ".*" -- "{{caxa}}/node_modules/.bin/node" "{{caxa}}/index.js" "CAXA"
             artifact: ayanbot-linux
     runs-on: ${{ matrix.os }}-latest
     steps:

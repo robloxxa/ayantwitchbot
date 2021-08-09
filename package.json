@@ -1,13 +1,20 @@
 {
   "name": "ayantwitchbot",
-  "version": "v1.1.1",
+  "version": "v1.2.0",
   "description": "osu! related twitch bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "build": "node build.js"
   },
-  "keywords": [],
+  "keywords": [
+    "twitch",
+    "osu!",
+    "osu",
+    "gosumemory",
+    "osu now playing command",
+    "osu twitch bot"
+  ],
   "author": "robloxxa",
   "license": "ISC",
   "dependencies": {
@@ -19,7 +26,8 @@
     "ojsama": "^2.2.0",
     "prompts": "^2.4.1",
     "semver": "^7.3.5",
-    "tmi.js": "^1.8.3"
+    "tmi.js": "^1.8.3",
+    "ws-reconnect": "^1.0.7"
   },
   "devDependencies": {
     "caxa": "^2.1.0"
