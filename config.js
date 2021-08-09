@@ -1,4 +1,4 @@
-const { outputJson, pathExists, copy} = require('fs-extra');
+const { outputJson, pathExists, copy } = require('fs-extra');
 const defaultConfig = require('./config.default.json')
 const prompts = require("prompts");
 const configPath = process.cwd()+'\\config.json'
