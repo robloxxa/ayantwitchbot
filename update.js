@@ -13,6 +13,7 @@ const prettyNotes = (body) => {
         .replace(/\>([\S ]*)/g, chalk.gray(' $1'))
         .replace(/`([a-zA-Z0-9*: ]*)`/g, chalk.yellow('$1'))
         .replace(/(?:\!\[([a-zA-Z0-9 ]*)\])\(([\S ]*)\)/g, '$2')
+        .replace(/\*\*\*([a-zA-Z0-9 ]*)\*\*\*'/g, chalk.redBright('$1'))
 }
 
 module.exports = async (client) => {
