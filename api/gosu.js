@@ -66,10 +66,10 @@ module.exports = async client => {
                         difficulty: data.diffName
                     },
                     stats: {
-                        AR: data.mAR.toFixed(1),
-                        CS: data.mCS.toFixed(1),
-                        OD: data.mOD.toFixed(1),
-                        HP: data.mHP.toFixed(1),
+                        AR: data.mAR,
+                        CS: data.mCS,
+                        OD: data.mOD,
+                        HP: data.mHP,
                         SR: data.liveStarRating,
                         BPM: {
                             min: data.mMinBpm,
@@ -77,10 +77,10 @@ module.exports = async client => {
                         },
                         maxCombo: data.maxCombo,
                         fullSR: data.mStars,
-                        memoryAR: data.ar.toFixed(1),
-                        memoryCS: data.cs.toFixed(1),
-                        memoryOD: data.od.toFixed(1),
-                        memoryHP: data.hp.toFixed(1)
+                        memoryAR: data.ar,
+                        memoryCS: data.cs,
+                        memoryOD: data.od,
+                        memoryHP: data.hp
                     },
                     path: {
                         folder: path.normalize(data.osuFileLocation + '\\..').split("\\").pop(),
@@ -95,19 +95,19 @@ module.exports = async client => {
                     str: data.mods.replace(/None|,/g, '')
                 },
                 pp: {
-                    100: data.osu_SSPP.toFixed(2),
-                    99: data.osu_99PP.toFixed(2),
-                    98: data.osu_98PP.toFixed(2),
-                    97: data.osu_97PP.toFixed(2),
-                    96: data.osu_96PP.toFixed(2),
-                    95: data.osu_95PP.toFixed(2),
+                    100: data.osu_SSPP,
+                    99: data.osu_99PP,
+                    98: data.osu_98PP,
+                    97: data.osu_97PP,
+                    96: data.osu_96PP,
+                    95: data.osu_95PP,
                 }
             }
             const gameplay = {
                 gameMode: 0,
                 name: data.username,
                 score: data.score,
-                accuracy: data.acc.toFixed(2),
+                accuracy: data.acc,
                 combo: {
                     current: data.combo,
                     max: data.currentMaxCombo
@@ -132,9 +132,9 @@ module.exports = async client => {
                     hitErrorArray: null
                 },
                 pp: {
-                    current: data.ppIfMapEndsNow.toFixed(0),
-                    fc: data.ppIfRestFced.toFixed(0),
-                    maxThisPlay: data.noChokePp.toFixed(0)
+                    current: data.ppIfMapEndsNow,
+                    fc: data.ppIfRestFced,
+                    maxThisPlay: data.noChokePp
                 },
                 keyOverlay: {},
                 leaderboard: {}
