@@ -12,3 +12,4 @@ gen
 /node_modules/
 /executable/
 /commands/defaultCommands/
+/commands/
