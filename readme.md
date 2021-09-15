@@ -15,7 +15,7 @@ Bot for handling osu! related commands/links written on Node JS
 5. Start ayantwitchbot ( ayanbot.exe | sh ./ayanbot )
 >Please note that Linux build is not tested and could be very unstable
 ## Default Commands
->**You can also check out [commands](https://github.com/robloxxa/ayantwitchbot/tree/master/commands) made by me or other people that's not included with bot**
+>**You can also check out [commands](https://github.com/robloxxa/ayantwitchbot/tree/master/customCommands) made by me or other people that's not included with bot**
 * !np - show current map\
 ![](https://i.imgur.com/h11lplS.png)
 * !currentskin - show current skin\
@@ -36,7 +36,7 @@ You can write your own commands with javascript and use it in Bot
 Script should be placed in **/commands/** folder within executable file
 >If you wanna import additional files (Script, json, or Native Module), you can make folder for a command
 ### !currentskin example
-**You can see more examples in [commands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/commands) and [defaultCommands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/defaultCommands)**
+**You can see more examples in [commands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/customCommands) and [defaultCommands folder](https://github.com/robloxxa/ayantwitchbot/tree/master/defaultCommands)**
 ```javascript
 exports.conf = { // Configuration for commands name, aliases and regular expression
       name: 'currentskin',
